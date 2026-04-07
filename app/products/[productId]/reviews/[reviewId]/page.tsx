@@ -1,9 +1,23 @@
+import { notFound } from "next/navigation";
 
-const page = async ({params}: { params: Promise<{ productId: string; reviewId: string }> }) => {
-  const {productId, reviewId} = await params
+const page = async ({
+  params,
+}: {
+  params: Promise<{ productId: string; reviewId: string }>;
+}) => {
+  const { productId, reviewId } = await params;
+
+  if (parseInt(reviewId) > 10) {
+    notFound();
+  }
+
   return (
-    <div>page - {productId} - {reviewId}</div>
-  )
-}
+    <>
+      <div>
+        page - {productId} - {reviewId}
+      </div>
+    </>
+  );
+};
 
-export default page
+export default page;
